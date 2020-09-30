@@ -8,11 +8,15 @@ public class UserRegistration {
 	
 	//Class variable
 	private static final String PATTERN_FOR_NAME = "[A-Z]{1}[a-z]{2,}$";
+	private static final String PATTERN_FOR_EMAIL = "^[abc]{3}[.+-_]{0,1}[a-z0-9]*@[a-z0-9]+.(a-z.)*[a-z]{2,}";
+	
 	private static final Pattern GET_PATTERN = Pattern.compile(PATTERN_FOR_NAME);
+	private static final Pattern GET_PATTERN_EMAIl = Pattern.compile(PATTERN_FOR_EMAIL);
 	
 	//Instance variables
 	private String firstName;
 	private String lastName;
+	private String email;
 	
 	//Validating first name
 	public void validateFirstName(String name) {
@@ -37,6 +41,17 @@ public class UserRegistration {
 			System.out.println("Last name must start with cap and should contain at least 3 characters");
 		}
 	}
+	
+	public void validateEmail(String email) {
+		
+		this.email = email;
+		Matcher nameMatch = GET_PATTERN_EMAIl.matcher(this.email);
+		if(nameMatch.matches()) {
+			System.out.println("Email : "+this.email);
+		} else {
+			System.out.println("Invalid email");
+		}
+	}
 
 	public static void main(String[] args) {
 		
@@ -47,14 +62,19 @@ public class UserRegistration {
 		//Local variable
 		String firstName;
 		String lastName;
+		String email;
 		
 		System.out.println("Enter first name :");
 		firstName = sc.next();
 		System.out.println("Enter last name : ");
 		lastName = sc.next();
+		sc.nextLine();
+		System.out.println("Enter email :");
+		email = sc.nextLine();
 		
-		//Calling name validation function
+		//Calling name and email validation function
 		userObject.validateFirstName(firstName);
 		userObject.validateLastName(lastName);
+		userObject.validateEmail(email);
 	}
 }
