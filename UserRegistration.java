@@ -14,7 +14,7 @@ public class UserRegistration {
 	
 	//Developing required patterns
 	private static final Pattern GET_PATTERN_NAME = Pattern.compile(PATTERN_FOR_NAME);
-	private static final Pattern GET_PATTERN_EMAIl = Pattern.compile(PATTERN_FOR_EMAIL);
+	private static final Pattern GET_PATTERN_EMAIL = Pattern.compile(PATTERN_FOR_EMAIL);
 	private static final Pattern GET_PATTERN_PHNO = Pattern.compile(PATTERN_FOR_PHNO);
 	private static final Pattern GET_PATTERN_PWD = Pattern.compile(PATTERN_FOR_PASSWORD);
 	
@@ -53,7 +53,7 @@ public class UserRegistration {
 	public void validateEmail(String email) {
 		
 		this.email = email;
-		Matcher nameMatch = GET_PATTERN_EMAIl.matcher(this.email);
+		Matcher nameMatch = GET_PATTERN_EMAIL.matcher(this.email);
 		if(nameMatch.matches()) {
 			System.out.println("Email : "+this.email);
 		} else {
