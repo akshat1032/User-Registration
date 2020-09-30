@@ -10,7 +10,7 @@ public class UserRegistration {
 	private static final String PATTERN_FOR_NAME = "^[A-Z]{1}[a-z]{2,}$";
 	private static final String PATTERN_FOR_EMAIL = "^[abc]{3}[.+-_]{0,1}[a-z0-9]*@[a-z0-9]+.(a-z.)*[a-z]{2,}";
 	private static final String PATTERN_FOR_PHNO = "^[0-9]{1,3}\s{1}[0-9]*{10}";
-	private static final String PATTERN_FOR_PASSWORD = "[A-Za-z0-9]+{8,}";
+	private static final String PATTERN_FOR_PASSWORD = "[[A-Z]+?[0-9]+?[a-z]*?]{8,}";
 	
 	//Developing required patterns
 	private static final Pattern GET_PATTERN_NAME = Pattern.compile(PATTERN_FOR_NAME);
