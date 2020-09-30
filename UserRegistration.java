@@ -12,16 +12,29 @@ public class UserRegistration {
 	
 	//Instance variables
 	private String firstName;
+	private String lastName;
 	
-	//Validating firstName;
+	//Validating first name
 	public void validateFirstName(String name) {
 		
 		this.firstName = name;
 		Matcher nameMatch = GET_PATTERN.matcher(this.firstName);
 		if(nameMatch.matches()) {
-			System.out.println("Welcome, "+this.firstName);
+			System.out.println("First Name : "+this.firstName);
 		} else {
 			System.out.println("First name must start with cap and should contain at least 3 characters");
+		}
+	}
+	
+	//Validating last name
+	public void validateLastName(String name) {
+		
+		this.lastName = name;
+		Matcher nameMatch = GET_PATTERN.matcher(this.lastName);
+		if(nameMatch.matches()) {
+			System.out.println("Last name : "+this.lastName);
+		} else {
+			System.out.println("Last name must start with cap and should contain at least 3 characters");
 		}
 	}
 
@@ -31,11 +44,17 @@ public class UserRegistration {
 		
 		UserRegistration userObject = new UserRegistration();
 		
-		//Variable
+		//Local variable
 		String firstName;
+		String lastName;
 		
-		System.out.println("Enter the first name :");
+		System.out.println("Enter first name :");
 		firstName = sc.next();
+		System.out.println("Enter last name : ");
+		lastName = sc.next();
+		
+		//Calling name validation function
 		userObject.validateFirstName(firstName);
+		userObject.validateLastName(lastName);
 	}
 }
