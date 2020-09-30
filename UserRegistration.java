@@ -26,63 +26,48 @@ public class UserRegistration {
 	private String password;
 	
 	//Validating first name
-	public void validateFirstName(String name) {
+	public boolean validateFirstName(String name) {
 		
 		this.firstName = name;
-		Matcher nameMatch = GET_PATTERN_NAME.matcher(this.firstName);
-		if(nameMatch.matches()) {
-			System.out.println("First Name : "+this.firstName);
-		} else {
-			System.out.println("First name must start with cap and should contain at least 3 characters");
-		}
+		Matcher firstNameMatch = GET_PATTERN_NAME.matcher(this.firstName);
+		
+		return firstNameMatch.matches();
 	}
 	
 	//Validating last name
-	public void validateLastName(String name) {
+	public boolean validateLastName(String name) {
 		
 		this.lastName = name;
-		Matcher nameMatch = GET_PATTERN_NAME.matcher(this.lastName);
-		if(nameMatch.matches()) {
-			System.out.println("Last name : "+this.lastName);
-		} else {
-			System.out.println("Last name must start with cap and should contain at least 3 characters");
-		}
+		Matcher lastNameMatch = GET_PATTERN_NAME.matcher(this.lastName);
+		
+		return lastNameMatch.matches();
 	}
 	
 	//Validating email
-	public void validateEmail(String email) {
+	public boolean validateEmail(String email) {
 		
 		this.email = email;
-		Matcher nameMatch = GET_PATTERN_EMAIL.matcher(this.email);
-		if(nameMatch.matches()) {
-			System.out.println("Email : "+this.email);
-		} else {
-			System.out.println("Invalid email");
-		}
+		Matcher emailMatch = GET_PATTERN_EMAIL.matcher(this.email);
+		
+		return emailMatch.matches();
 	}
 	
 	//Validating phone number
-	public void validatePhoneNumber(String phoneNumber) {
+	public boolean validatePhoneNumber(String phoneNumber) {
 		
 		this.phoneNumber = phoneNumber;
-		Matcher nameMatch = GET_PATTERN_PHNO.matcher(this.phoneNumber);
-		if(nameMatch.matches()) {
-			System.out.println("Phone number : "+this.phoneNumber);
-		} else {
-			System.out.println("Invalid phone number");
-		}
+		Matcher phoneNumberMatch = GET_PATTERN_PHNO.matcher(this.phoneNumber);
+		
+		return phoneNumberMatch.matches();
 	}
 	
 	//Validating phone number
-	public void validatePassword(String password) {
+	public boolean validatePassword(String password) {
 			
 		this.password = password;
-		Matcher nameMatch = GET_PATTERN_PWD.matcher(this.password);
-		if(nameMatch.matches()) {
-			System.out.println("Password : "+this.password);
-		} else {
-			System.out.println("Invalid password");
-		}
+		Matcher passwordMatch = GET_PATTERN_PWD.matcher(this.password);
+	
+		return passwordMatch.matches();
 	}
 
 	public static void main(String[] args) {
