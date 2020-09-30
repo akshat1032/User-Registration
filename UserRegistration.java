@@ -9,18 +9,21 @@ public class UserRegistration {
 	//Class variable
 	private static final String PATTERN_FOR_NAME = "[A-Z]{1}[a-z]{2,}$";
 	private static final String PATTERN_FOR_EMAIL = "^[abc]{3}[.+-_]{0,1}[a-z0-9]*@[a-z0-9]+.(a-z.)*[a-z]{2,}";
-	private static final String PATTERN_FOR_PHNO = "^[0-9]{2}\s{1}[0-9]*{10}";
+	private static final String PATTERN_FOR_PHNO = "^[0-9]{1,3}\s{1}[0-9]*{10}";
+	private static final String PATTERN_FOR_PASSWORD = "[A-Za-z0-9]*{8,}";
 	
 	//Developing required patterns
 	private static final Pattern GET_PATTERN_NAME = Pattern.compile(PATTERN_FOR_NAME);
 	private static final Pattern GET_PATTERN_EMAIl = Pattern.compile(PATTERN_FOR_EMAIL);
 	private static final Pattern GET_PATTERN_PHNO = Pattern.compile(PATTERN_FOR_PHNO);
+	private static final Pattern GET_PATTERN_PWD = Pattern.compile(PATTERN_FOR_PASSWORD);
 	
 	//Instance variables
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String phoneNumber;
+	private String password;
 	
 	//Validating first name
 	public void validateFirstName(String name) {
@@ -66,7 +69,19 @@ public class UserRegistration {
 		if(nameMatch.matches()) {
 			System.out.println("Phone number : "+this.phoneNumber);
 		} else {
-			System.out.println("Invalid email");
+			System.out.println("Invalid phone number");
+		}
+	}
+	
+	//Validating phone number
+	public void validatePassword(String password) {
+			
+		this.password = password;
+		Matcher nameMatch = GET_PATTERN_PWD.matcher(this.password);
+		if(nameMatch.matches()) {
+			System.out.println("Password : "+this.password);
+		} else {
+			System.out.println("Invalid password");
 		}
 	}
 
@@ -81,7 +96,9 @@ public class UserRegistration {
 		String lastName;
 		String email;
 		String phoneNumber;
+		String password;
 		
+		//Taking user input
 		System.out.println("Enter first name :");
 		firstName = sc.next();
 		System.out.println("Enter last name : ");
@@ -91,11 +108,14 @@ public class UserRegistration {
 		email = sc.nextLine();
 		System.out.println("Enter phone number : ");
 		phoneNumber = sc.nextLine();
+		System.out.println("Enter password :");
+		password = sc.nextLine();
 		
-		//Calling name and email validation function
+		//Calling validation functions
 		userObject.validateFirstName(firstName);
 		userObject.validateLastName(lastName);
 		userObject.validateEmail(email);
 		userObject.validatePhoneNumber(phoneNumber);
+		userObject.validatePassword(password);
 	}
 }
