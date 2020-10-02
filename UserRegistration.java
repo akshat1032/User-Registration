@@ -26,48 +26,63 @@ public class UserRegistration {
 	private String password;
 	
 	//Validating first name
-	public boolean validateFirstName(String name) {
+	public boolean validateFirstName(String name) throws InvalidUserDetailsException{
 		
 		this.firstName = name;
 		Matcher firstNameMatch = GET_PATTERN_NAME.matcher(this.firstName);
 		
-		return firstNameMatch.matches();
+		if (!(firstNameMatch.matches()))
+			throw new InvalidUserDetailsException("Invalid First Name");
+		else
+			return firstNameMatch.matches();
+			
 	}
 	
 	//Validating last name
-	public boolean validateLastName(String name) {
+	public boolean validateLastName(String name) throws InvalidUserDetailsException {
 		
 		this.lastName = name;
 		Matcher lastNameMatch = GET_PATTERN_NAME.matcher(this.lastName);
 		
-		return lastNameMatch.matches();
+		if (!(lastNameMatch.matches()))
+			throw new InvalidUserDetailsException("Invalid Last Name");
+		else
+			return lastNameMatch.matches();
 	}
 	
 	//Validating email
-	public boolean validateEmail(String email) {
+	public boolean validateEmail(String email) throws InvalidUserDetailsException {
 		
 		this.email = email;
 		Matcher emailMatch = GET_PATTERN_EMAIL.matcher(this.email);
 		
-		return emailMatch.matches();
+		if (!(emailMatch.matches()))
+			throw new InvalidUserDetailsException("Invalid email");
+		else
+			return emailMatch.matches();
 	}
 	
 	//Validating phone number
-	public boolean validatePhoneNumber(String phoneNumber) {
+	public boolean validatePhoneNumber(String phoneNumber) throws InvalidUserDetailsException {
 		
 		this.phoneNumber = phoneNumber;
 		Matcher phoneNumberMatch = GET_PATTERN_PHNO.matcher(this.phoneNumber);
-		
-		return phoneNumberMatch.matches();
+		if (!(phoneNumberMatch.matches()))
+			throw new InvalidUserDetailsException("Invalid phone number");
+		else
+			return phoneNumberMatch.matches();
 	}
 	
-	//Validating phone number
-	public boolean validatePassword(String password) {
+	//Validating password
+	public boolean validatePassword(String password) throws InvalidUserDetailsException {
 			
 		this.password = password;
 		Matcher passwordMatch = GET_PATTERN_PWD.matcher(this.password);
-	
-		return passwordMatch.matches();
+		
+		if (!(passwordMatch.matches()))
+			throw new InvalidUserDetailsException("Invalid First Name");
+		else
+			return passwordMatch.matches();
 	}
 
 	public static void main(String[] args) {
@@ -97,10 +112,37 @@ public class UserRegistration {
 		password = sc.nextLine();
 		
 		//Calling validation functions
-		userObject.validateFirstName(firstName);
-		userObject.validateLastName(lastName);
-		userObject.validateEmail(email);
-		userObject.validatePhoneNumber(phoneNumber);
-		userObject.validatePassword(password);
+		try {
+			userObject.validateFirstName(firstName);
+			
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			userObject.validateLastName(lastName);
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			userObject.validateEmail(email);
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			userObject.validatePhoneNumber(phoneNumber);
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			userObject.validatePassword(password);
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 }

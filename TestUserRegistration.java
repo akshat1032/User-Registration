@@ -12,12 +12,24 @@ public class TestUserRegistration {
 		//Happy test case
 		UserRegistration userObject = new UserRegistration();
 		boolean expectedOutcome = true;
-		boolean actualOutcome = userObject.validateFirstName("Rohan");
+		boolean actualOutcome = true;
+		try {
+			actualOutcome = userObject.validateFirstName("Rohan");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcome, actualOutcome);
 		
 		//Sad test case
 		boolean expectedOutcomeSecond = false;
-		boolean actualOutcomeSecond = userObject.validateFirstName("roHan");
+		boolean actualOutcomeSecond = false;
+		try {
+			actualOutcomeSecond = userObject.validateFirstName("roHan");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcomeSecond, actualOutcomeSecond);
 	}
 	
@@ -27,12 +39,24 @@ public class TestUserRegistration {
 		//Happy test case
 		UserRegistration userObject = new UserRegistration();
 		boolean expectedOutcome = true;
-		boolean actualOutcome = userObject.validateLastName("Kumar");
+		boolean actualOutcome = true;
+		try {
+			actualOutcome = userObject.validateLastName("Kumar");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcome, actualOutcome);
 		
 		//Sad test case
 		boolean expectedOutcomeSecond = false;
-		boolean actualOutcomeSecond = userObject.validateLastName("ku");
+		boolean actualOutcomeSecond = false;
+		try {
+			actualOutcomeSecond = userObject.validateLastName("ku");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcomeSecond, actualOutcomeSecond);
 		
 	}
@@ -43,12 +67,24 @@ public class TestUserRegistration {
 		//Happy test case
 		UserRegistration userObject = new UserRegistration();
 		boolean expectedOutcome = true;
-		boolean actualOutcome = userObject.validateEmail("abc100@gmail.com");
+		boolean actualOutcome = true;
+		try {
+			actualOutcome = userObject.validateEmail("abc100@gmail.com");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcome, actualOutcome);
 		
 		//Sad test case
 		boolean expectedOutcomeSecond = false;
-		boolean actualOutcomeSecond = userObject.validateEmail("abc@.gmail.com");
+		boolean actualOutcomeSecond = false;
+		try {
+			actualOutcomeSecond = userObject.validateEmail("abc@.gmail.com");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcomeSecond, actualOutcomeSecond);
 	}
 	
@@ -58,12 +94,24 @@ public class TestUserRegistration {
 		//Happy test case
 		UserRegistration userObject = new UserRegistration();
 		boolean expectedOutcome = true;
-		boolean actualOutcome = userObject.validatePhoneNumber("91 9835298032");
+		boolean actualOutcome = true;
+		try {
+			actualOutcome = userObject.validatePhoneNumber("91 9835298032");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcome, actualOutcome);
 		
 		//Sad test case
 		boolean expectedOutcomeSecond = false;
-		boolean actualOutcomeSecond = userObject.validateLastName("919472174268");
+		boolean actualOutcomeSecond = false;
+		try {
+			actualOutcomeSecond = userObject.validateLastName("919472174268");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcomeSecond, actualOutcomeSecond);
 	}
 	
@@ -73,12 +121,24 @@ public class TestUserRegistration {
 		//Happy test case
 		UserRegistration userObject = new UserRegistration();
 		boolean expectedOutcome = true;
-		boolean actualOutcome = userObject.validatePassword("akshat1032@A");
+		boolean actualOutcome = true;
+		try {
+			actualOutcome = userObject.validatePassword("akshat1032@A");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcome, actualOutcome);
 		
 		//Sad test case
 		boolean expectedOutcomeSecond = false;
-		boolean actualOutcomeSecond = userObject.validatePassword("aks");
+		boolean actualOutcomeSecond = false;
+		try {
+			actualOutcomeSecond = userObject.validatePassword("aks");
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(expectedOutcomeSecond, actualOutcomeSecond);
 	}
 }

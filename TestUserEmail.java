@@ -38,7 +38,12 @@ public class TestUserEmail {
 	@Test
 	public void testUserEmail() {
 		
-		assertEquals(expectedOutcome,userEmail.validateEmail(sampleEmail));
+		try {
+			assertEquals(expectedOutcome,userEmail.validateEmail(sampleEmail));
+		} catch (InvalidUserDetailsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
