@@ -4,6 +4,14 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@FunctionalInterface
+interface ValidateUserDetails{
+	public boolean validateDetails(String userInformation);
+	static void printResult(String userInfo, String functionName, ValidateUserDetails validateDetail) {
+		System.out.println(functionName + " is valid : "+validateDetail.validateDetails(userInfo));
+	}
+}
+
 public class UserRegistration {
 	
 	//Class variable
@@ -18,78 +26,10 @@ public class UserRegistration {
 	private static final Pattern GET_PATTERN_PHNO = Pattern.compile(PATTERN_FOR_PHNO);
 	private static final Pattern GET_PATTERN_PWD = Pattern.compile(PATTERN_FOR_PASSWORD);
 	
-	//Instance variables
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String phoneNumber;
-	private String password;
-	
-	//Validating first name
-	public boolean validateFirstName(String name) throws InvalidUserDetailsException{
-		
-		this.firstName = name;
-		Matcher firstNameMatch = GET_PATTERN_NAME.matcher(this.firstName);
-		
-		if (!(firstNameMatch.matches()))
-			throw new InvalidUserDetailsException("Invalid First Name");
-		else
-			return firstNameMatch.matches();
-			
-	}
-	
-	//Validating last name
-	public boolean validateLastName(String name) throws InvalidUserDetailsException {
-		
-		this.lastName = name;
-		Matcher lastNameMatch = GET_PATTERN_NAME.matcher(this.lastName);
-		
-		if (!(lastNameMatch.matches()))
-			throw new InvalidUserDetailsException("Invalid Last Name");
-		else
-			return lastNameMatch.matches();
-	}
-	
-	//Validating email
-	public boolean validateEmail(String email) throws InvalidUserDetailsException {
-		
-		this.email = email;
-		Matcher emailMatch = GET_PATTERN_EMAIL.matcher(this.email);
-		
-		if (!(emailMatch.matches()))
-			throw new InvalidUserDetailsException("Invalid email");
-		else
-			return emailMatch.matches();
-	}
-	
-	//Validating phone number
-	public boolean validatePhoneNumber(String phoneNumber) throws InvalidUserDetailsException {
-		
-		this.phoneNumber = phoneNumber;
-		Matcher phoneNumberMatch = GET_PATTERN_PHNO.matcher(this.phoneNumber);
-		if (!(phoneNumberMatch.matches()))
-			throw new InvalidUserDetailsException("Invalid phone number");
-		else
-			return phoneNumberMatch.matches();
-	}
-	
-	//Validating password
-	public boolean validatePassword(String password) throws InvalidUserDetailsException {
-			
-		this.password = password;
-		Matcher passwordMatch = GET_PATTERN_PWD.matcher(this.password);
-		
-		if (!(passwordMatch.matches()))
-			throw new InvalidUserDetailsException("Invalid First Name");
-		else
-			return passwordMatch.matches();
-	}
-
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		UserRegistration userObject = new UserRegistration();
 		
 		//Local variable
 		String firstName;
@@ -111,38 +51,39 @@ public class UserRegistration {
 		System.out.println("Enter password :");
 		password = sc.nextLine();
 		
-		//Calling validation functions
-		try {
-			userObject.validateFirstName(firstName);
-			
-		} catch (InvalidUserDetailsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			userObject.validateLastName(lastName);
-		} catch (InvalidUserDetailsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			userObject.validateEmail(email);
-		} catch (InvalidUserDetailsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			userObject.validatePhoneNumber(phoneNumber);
-		} catch (InvalidUserDetailsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			userObject.validatePassword(password);
-		} catch (InvalidUserDetailsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ValidateUserDetails nameIsValid = (String userInformation) ->{
+			Matcher nameMatch = GET_PATTERN_NAME.matcher(userInformation);
+			if (nameMatch.matches())
+				return true;
+			return false;
+		};
+		
+		ValidateUserDetails emailIsValid = (String userInformation) ->{
+			Matcher emailMatch = GET_PATTERN_EMAIL.matcher(userInformation);
+			if (emailMatch.matches())
+				return true;
+			return false;
+		};
+		
+		ValidateUserDetails phoneNumberIsValid = (String userInformation) ->{
+			Matcher phoneNumberMatch = GET_PATTERN_PHNO.matcher(userInformation);
+			if (phoneNumberMatch.matches())
+				return true;
+			return false;
+		};
+		
+		ValidateUserDetails passwordIsValid = (String userInformation) ->{
+			Matcher passwordMatch = GET_PATTERN_PWD.matcher(userInformation);
+			if (passwordMatch.matches())
+				return true;
+			return false;
+		};
 	
+		ValidateUserDetails.printResult(firstName, "First Name", nameIsValid);
+		ValidateUserDetails.printResult(lastName, "Last Name", nameIsValid);
+		ValidateUserDetails.printResult(email, "Email ", emailIsValid);
+		ValidateUserDetails.printResult(phoneNumber, "Phone Number", phoneNumberIsValid);
+		ValidateUserDetails.printResult(password, "Password", passwordIsValid);
+		
 	}
 }
